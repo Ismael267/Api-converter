@@ -59,4 +59,13 @@ class UserController extends Controller
         $userToken = $user->createToken("token",  ['*'], now()->addMinutes(15))->plainTextToken;
         return response()->json(['error' => ' ', "Token" => $userToken, "Message" => "Connecté avec succès", 'status' => 'done'], 200);
     }
+    public function logout(Request $request)
+{
+    $request->user()->token()->revoke();
+
+    return response()->json([
+        'message' => 'Vous avez été déconnecté avec succès.'
+    ]);
+}
+
 }

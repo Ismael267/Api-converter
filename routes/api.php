@@ -21,11 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('users/register', [UserController::class, 'register']);
 Route::post('users/login', [UserController::class, 'login']);
+Route::post('users/logout', [UserController::class, 'logout']);
 Route::post('/currency/add', [CurrencyPairController::class, 'addCurrencyPair']);
 Route::get('/currency/liste', [CurrencyPairController::class, 'getCurrencyPairs']);
-Route::put('/currency/update/{pair}', [CurrencyPairController::class, 'updateCurrencyPairs']);
+Route::put('/currency/update/{id}', [CurrencyPairController::class, 'updateCurrencyPairs']);
 Route::get('/api-status', function () {
     return response()->json(['status' => 'API fonctionnelle',]);
 });
 Route::get('currency/show/{id}', [CurrencyPairController::class,'showCurrencyPair']);
-Route::get('currency/delete/{id}', [CurrencyPairController::class,'deleteCurrencyPair']);
+Route::delete('currency/delete/{id}', [CurrencyPairController::class,'deleteCurrencyPair']);

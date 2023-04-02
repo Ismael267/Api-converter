@@ -37,7 +37,7 @@ class   CurrencyPairController extends Controller
             'rate' => $validatedData['rate'],
         ]);
         return response()->json([
-            'message' => 'La paire de devises a été ajoutée avec succès',
+            'message' => 'La paire de devises ajoutée ',
             'data' => $convert
         ], 201);
     }
@@ -60,7 +60,7 @@ class   CurrencyPairController extends Controller
 
         if ($currency) {
             return response()->json([
-                'message' => 'La paire de devises a été trouvée',
+                'message' => 'La paire de devises trouve',
                 'data' => $currency
             ], 200);
         } else {
@@ -82,13 +82,13 @@ class   CurrencyPairController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateCurrencyPairs(Request $request, $pair)
+    public function updateCurrencyPairs(Request $request, $id)
     {
         $validatedData = $request->validate([
             'rate' => 'required|numeric|between:0,99.9',
         ]);
 
-        $convert = CurrencyPair::where('pair', $pair)->update([
+        $convert = CurrencyPair::where('pair', $id)->update([
             'rate' => $validatedData['rate'],
         ]);
 
